@@ -1,4 +1,6 @@
 #this is a snakemake file to perform fastqc for all the srr in a directory
+#not complete, it has errors
+
 import glob
 import os
 
