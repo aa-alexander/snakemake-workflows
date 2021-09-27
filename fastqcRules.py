@@ -1,42 +1,29 @@
 #this is a snakemake file to perform fastqc for all the srr in a directory
-#not complete, it has errors
 
 import glob
 import os
 
-inputPath =      #path to your raw reads
-finalPath =      #path to your output directory
-threads =        #number of threads
+inputPath = /path/to/rawReads    #path to your raw reads
+finalPath = /path/to/output   #path to your output directory
+nthreads = 4       #number of threads
 
-SRR, FR = glob.glob("{srr}_{fr}.fastq") 
+SRR, FR = glob_wildcards(inputPath + "/{srr}_{fr}.fastq") 
 
 rule end:
 	input:
-		report = expand(finalPath + "/QCreport/multiQCreport.html", srr = SRR, fr = FR)
+		fastqc = expand(finalPath + "/QCreport/{srr}_{fr}_fastqc.html", srr = SRR, fr = FR)
 		
 rule fastQC:
 	input:
-		rawRead = inputPath + "/{srr}_{fr}.fastq*"
+		rawRead = inputPath + "/{srr}_{fr}.fastq"
 
 	output:
 		fastQC_read = finalPath + "/QCreport/{srr}_{fr}_fastqc.html"
 		
 	params:
-		outPath = finalPath + "/QCreport"
-    threads = threads
+		outPath = finalPath + "/QCreport",
+    		threads = nthreads
     
 	shell:
-		"fastqc -t {params.threads} -o {params.outPath} {input.rawRead1} "
+		"fastqc -t {params.threads} -o {params.outPath} {input.rawRead} "
 	
-rule multiQC:
-	input:
-		fastqc = rules.fastQC.output.fastQC_read
-    
-	output:
-		multiQCreport = finalPath + "/QCreport/multiQCreport.html"
-    
-	params:
-		path = finalPath + "/QCreport"
-    
-	shell:
-		"multiqc {params.path} --filename {output.multiQCreport}"
