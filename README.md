@@ -1,7 +1,10 @@
-#snakemake-workflows
+# Snakemake-workflows
 
 Snakemake is a python based workflow management system. Here you can find different snakemake files to perform some basic analysis. 
-Install miniconda and use conda environment to install snakemake and other tools in one specific environment. After installing conda, the command to create a environment is
+
+Install miniconda and use conda environment to install snakemake and other tools in one specific environment. To install and know more about conda visit -- https://docs.conda.io/en/latest/
+
+After installing conda, the command to create a environment is
 **`conda create -n snakemake-environment`**
 **`conda activate snakemake-environment`**
 
@@ -15,7 +18,7 @@ snakemake citation:
 All my snakemake files will be written as **"filename.py"** file. So while running snakemake "-s" parameter is given. Therefore the command line execution will look like - **`snakemake -j 1 -s filename.py`**
 
 
-##FastQC-snakemake workflow
+## FastQC-snakemake workflow
 
 This workflow performs fastqc for all the fastq files in your input path directory and output the results in the output path directory. 
 
