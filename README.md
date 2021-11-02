@@ -8,7 +8,7 @@ After installing conda, the command to create a environment is
 **`conda create -n snakemake-environment`**
 **`conda activate snakemake-environment`**
 
-Next install snakemake in this environment using the command, **`conda  -c conda-forge -c bioconda -n snakemake -y`**
+Next install snakemake in this environment using the command, **`conda install -c conda-forge -c bioconda snakemake -y`**
 
 To know more about snakemake : https://snakemake.readthedocs.io/en/stable/index.html
 
